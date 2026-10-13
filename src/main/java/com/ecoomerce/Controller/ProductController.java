@@ -2,6 +2,7 @@ package com.ecoomerce.Controller;
 
 import com.ecoomerce.DTO.ProductRequestDTO;
 import com.ecoomerce.DTO.ProductResponseDTO;
+import com.ecoomerce.DTO.UploadedImage;
 import com.ecoomerce.Services.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -25,7 +26,7 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @PostMapping(value = "/create", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping("/create")
     @Operation(
             summary = "Crea nuevo Producto",
             description = "Permite la creacion de un nuevo producto"
@@ -40,8 +41,8 @@ public class ProductController {
         return ResponseEntity.badRequest().build();
     }
 
-    @PostMapping("/uploadimage")
-    public ResponseEntity<String> uploadImage(MultipartFile file){
+    @PostMapping(value = "/uploadimage", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<UploadedImage> uploadImage(MultipartFile file){
         return ResponseEntity.status(HttpStatus.CREATED).body(this.productService.uploadImage(file));
     }
 
