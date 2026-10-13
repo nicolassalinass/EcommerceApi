@@ -37,24 +37,6 @@ public class ProductService {
         return this.productMapper.toDTO(savedEntity);
     }
 
-    private void validarImagen(MultipartFile file) {
-        if (file == null || file.isEmpty()){
-            throw new ResponseStatusException(
-                    HttpStatus.BAD_REQUEST,
-                    "La imagen es obligatoria"
-            );
-        }
-
-        String contentType = file.getContentType();
-
-        if (contentType == null || !Set.of("image/jpeg", "image/png", "image/webp","image/gif").contains(contentType)) {
-            throw new ResponseStatusException(
-                    HttpStatus.BAD_REQUEST,
-                    "El archivo debe ser una imagen (JPEG, PNG, WEBP o GIF)"
-            );
-        }
-    }
-
     public List<ProductResponseDTO> getAll(){
         List<ProductEntity> entities = this.productRespository.findAll();
         return this.productMapper.toDTO(entities);
