@@ -4,6 +4,7 @@ import com.ecoomerce.DTO.ProductRequestDTO;
 import com.ecoomerce.DTO.ProductResponseDTO;
 import com.ecoomerce.DTO.UploadedImage;
 import com.ecoomerce.Entity.ProductEntity;
+import com.ecoomerce.Exeptions.Product.ProductNotFoundExeptions;
 import com.ecoomerce.Mappers.ProductMapper;
 import com.ecoomerce.Repository.ProductRespository;
 import jakarta.transaction.Transactional;
@@ -52,5 +53,31 @@ public class ProductService {
 
     public UploadedImage uploadImage(MultipartFile file) {
         return this.imageService.upload(file);
+    }
+
+    public ProductResponseDTO getById(Long id) {
+        ProductEntity product = this.productRespository.findById(id).orElse(null);
+        if (product == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Producto no encontrado");
+        }
+        return this.productMapper.toDTO(product);
+    }
+
+    @Transactional
+    public ProductResponseDTO updateProduct(Long id, ProductRequestDTO productRequestDTO){
+        ProductEntity product = this.productRespository.findById(id).orElse(null);
+
+        if (product == null) return null;
+
+        ProductEntity update = this.productMapper.updateEntity(product, productRequestDTO);
+
+
+
+        return this.productMapper.toDTO(this.productRespository.save(update));
+    }
+
+
+    public boolean exist(Long id){
+        return this.productRespository.existsById(id);
     }
 }

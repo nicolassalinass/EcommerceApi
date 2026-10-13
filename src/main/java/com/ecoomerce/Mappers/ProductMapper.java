@@ -38,4 +38,17 @@ public class ProductMapper {
         return entity;
     }
 
+
+    public ProductEntity updateEntity(ProductEntity entity, ProductRequestDTO requestDTO){
+        entity.setNombre(requestDTO.nombre());
+        entity.setDescripcion(requestDTO.descripcion());
+        entity.setPrice(requestDTO.price());
+        entity.setStok(requestDTO.stok());
+        entity.setIs_active(requestDTO.is_active());
+        entity.setImage(requestDTO.image());
+        entity.setCategory(requestDTO.category());
+
+        return entity;
+    }
+
 }

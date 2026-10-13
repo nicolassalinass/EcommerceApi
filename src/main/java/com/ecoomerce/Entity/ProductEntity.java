@@ -16,11 +16,11 @@ public class ProductEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(unique = true, nullable = false, length = 60)
+    @Column(nullable = false, length = 60)
     private String nombre;
     @Column(nullable = false, columnDefinition = "TEXT")
     private String descripcion;
-    @Column(nullable = false,precision = 2)
+    @Column(nullable = false,precision = 15, scale = 2)
     private BigDecimal price;
     @Column(nullable = false)
     private Integer stok;

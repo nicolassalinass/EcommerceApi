@@ -42,6 +42,9 @@ public class ProductController {
     }
 
     @PostMapping(value = "/uploadimage", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @Operation(
+            summary = "Carga de imagenes a cloudinary"
+    )
     public ResponseEntity<UploadedImage> uploadImage(MultipartFile file){
         return ResponseEntity.status(HttpStatus.CREATED).body(this.productService.uploadImage(file));
     }
@@ -53,5 +56,29 @@ public class ProductController {
     )
     public ResponseEntity<List<ProductResponseDTO>> all(){
         return ResponseEntity.ok(this.productService.getAll());
+    }
+
+    @GetMapping("/{id}")
+    @Operation(summary = "Obtener producto por id")
+    public ResponseEntity<ProductResponseDTO> getById(@Valid @PathVariable Long id){
+        return ResponseEntity.status(HttpStatus.FOUND).body(this.productService.getById(id));
+    }
+
+    @DeleteMapping("/{id}")
+    @Operation(summary = "Eliminar producto por id")
+    public ResponseEntity<Void> delete(@RequestParam Long id){
+        this.productService.delete(id);
+        return ResponseEntity.ok().build();
+    }
+
+    @PutMapping("/{id}")
+    @Operation(summary = "Actualizar producto por id")
+    public ResponseEntity<ProductResponseDTO> updateProduct(
+            @Valid @PathVariable Long id,
+            @Valid @RequestBody ProductRequestDTO productRequestDTO){
+        if (!this.productService.exist(id)){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(this.productService.updateProduct(id, productRequestDTO));
     }
 }
