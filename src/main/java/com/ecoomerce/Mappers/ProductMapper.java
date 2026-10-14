@@ -2,6 +2,7 @@ package com.ecoomerce.Mappers;
 
 import com.ecoomerce.DTO.ProductRequestDTO;
 import com.ecoomerce.DTO.ProductResponseDTO;
+import com.ecoomerce.DTO.UploadedImage;
 import com.ecoomerce.Entity.ProductEntity;
 import org.springframework.stereotype.Component;
 
@@ -49,6 +50,13 @@ public class ProductMapper {
         entity.setCategory(requestDTO.category());
 
         return entity;
+    }
+
+    public ProductEntity updateImageProduct(ProductEntity productEntity, UploadedImage uploadedImage){
+
+        productEntity.setImage(uploadedImage.url());
+
+        return productEntity;
     }
 
 }

@@ -81,4 +81,13 @@ public class ProductController {
         }
         return ResponseEntity.ok(this.productService.updateProduct(id, productRequestDTO));
     }
+
+    @PutMapping(value = "/updateImage/{id_product}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @Operation(summary = "Actualizar imagen del producto")
+    public ResponseEntity<ProductResponseDTO> updateImageProduct(@PathVariable Long id_product, MultipartFile file){
+        if (this.productService.exist(id_product)){
+            return ResponseEntity.ok(this.productService.updateImageProduct(id_product, file));
+        }
+        return ResponseEntity.badRequest().build();
+    }
 }

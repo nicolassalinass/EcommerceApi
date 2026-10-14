@@ -4,7 +4,6 @@ import com.ecoomerce.DTO.ProductRequestDTO;
 import com.ecoomerce.DTO.ProductResponseDTO;
 import com.ecoomerce.DTO.UploadedImage;
 import com.ecoomerce.Entity.ProductEntity;
-import com.ecoomerce.Exeptions.Product.ProductNotFoundExeptions;
 import com.ecoomerce.Mappers.ProductMapper;
 import com.ecoomerce.Repository.ProductRespository;
 import jakarta.transaction.Transactional;
@@ -15,7 +14,6 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Set;
 
 @Service
 public class ProductService {
@@ -79,5 +77,15 @@ public class ProductService {
 
     public boolean exist(Long id){
         return this.productRespository.existsById(id);
+    }
+
+    @Transactional
+    public ProductResponseDTO updateImageProduct(Long id, MultipartFile file) {
+        ProductEntity product = this.productRespository.findById(id).orElse(null);
+
+        UploadedImage uploadedImage = uploadImage(file);
+
+        ProductEntity save = this.productMapper.updateImageProduct(product, uploadedImage);
+        return this.productMapper.toDTO(save);
     }
 }
