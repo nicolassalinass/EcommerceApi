@@ -1,4 +1,4 @@
-package com.ecoomerce.DTO;
+package com.ecoomerce.DTO.Image;
 
 public record UploadedImage(
         String url,

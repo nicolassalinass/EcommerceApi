@@ -1,8 +1,8 @@
 package com.ecoomerce.Mappers;
 
-import com.ecoomerce.DTO.ProductRequestDTO;
-import com.ecoomerce.DTO.ProductResponseDTO;
-import com.ecoomerce.DTO.UploadedImage;
+import com.ecoomerce.DTO.Product.ProductRequestDTO;
+import com.ecoomerce.DTO.Product.ProductResponseDTO;
+import com.ecoomerce.DTO.Image.UploadedImage;
 import com.ecoomerce.Entity.ProductEntity;
 import org.springframework.stereotype.Component;
 

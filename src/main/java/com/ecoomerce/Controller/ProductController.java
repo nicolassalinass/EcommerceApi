@@ -1,11 +1,10 @@
 package com.ecoomerce.Controller;
 
-import com.ecoomerce.DTO.ProductRequestDTO;
-import com.ecoomerce.DTO.ProductResponseDTO;
-import com.ecoomerce.DTO.UploadedImage;
+import com.ecoomerce.DTO.Product.ProductRequestDTO;
+import com.ecoomerce.DTO.Product.ProductResponseDTO;
+import com.ecoomerce.DTO.Image.UploadedImage;
 import com.ecoomerce.Services.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;

@@ -1,4 +1,4 @@
-package com.ecoomerce.DTO;
+package com.ecoomerce.DTO.Product;
 
 import java.math.BigDecimal;
 

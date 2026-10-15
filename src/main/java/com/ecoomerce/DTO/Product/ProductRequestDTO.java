@@ -1,4 +1,4 @@
-package com.ecoomerce.DTO;
+package com.ecoomerce.DTO.Product;
 
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Min;

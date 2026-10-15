@@ -2,8 +2,7 @@ package com.ecoomerce.Services;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
-import com.ecoomerce.DTO.UploadedImage;
-import lombok.RequiredArgsConstructor;
+import com.ecoomerce.DTO.Image.UploadedImage;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
