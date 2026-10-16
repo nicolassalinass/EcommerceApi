@@ -7,8 +7,6 @@ public record UserRequestDTO(
         String email,
         String password,
         String rol,
-        boolean isActive,
-        LocalDateTime createAt,
-        LocalDateTime updateAt
+        boolean isActive
 ) {
 }

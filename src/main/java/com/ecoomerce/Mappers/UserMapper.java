@@ -2,9 +2,11 @@ package com.ecoomerce.Mappers;
 
 import com.ecoomerce.DTO.User.UserRequestDTO;
 import com.ecoomerce.DTO.User.UserResponseDto;
+import com.ecoomerce.DTO.User.UserUpdateDTO;
 import com.ecoomerce.Entity.UserEntity;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Component
@@ -34,10 +36,15 @@ public class UserMapper {
         userEntity.setPassword(requestDTO.password());
         userEntity.setRol(requestDTO.rol());
         userEntity.setActive(requestDTO.isActive());
-        userEntity.setCreateAt(requestDTO.createAt());
-        userEntity.setUpdateAt(requestDTO.updateAt());
 
         return userEntity;
+    }
+
+    public void updateEntityFromDTO(UserEntity entity, UserUpdateDTO updateDTO){
+        entity.setName(updateDTO.username());
+        entity.setEmail(updateDTO.email());
+        entity.setRol(updateDTO.rol());
+        entity.setActive(updateDTO.isActive());
     }
 
 
